@@ -1,0 +1,43 @@
+﻿@page
+@model PizzaShop.Pages.PizzaModel
+@{
+}
+
+
+<div class="text-center">
+    <h1 class="text-capitalize text-black">Here is our Pizza menu!</h1>
+    <h4>Choose and order whatever you want</h4>
+    <p class="smallText"><i>Only one pizza per order</i></p>
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 mb-5 mt-5">
+                <div class="w-100 row makeYourOwnDiv">
+                    <div class="col-4">
+                        <img src="~/images/Pizzas/Create.png" class="w-100"/>
+                    </div>
+                    <div class="align-items-center col-8">
+                        <div class="align-middle makeYourOwnText">
+                            <h3 style="text-align:left;">Create your own pizza</h3>
+                            <p style="text-align:left;">Make you own pizza with our pizza maker!</p>
+                            <a class="btn btn-primary" style="float: left" asp-page="Forms/CustomPizza">Get it now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @foreach (var pizza in Model.pizzasModels)
+            {
+                var imagePath = "~/images/Pizzas/" + (pizza.ImageTitle) + ".png";
+
+                <div class="col-4 mb-5">
+                    <img src="@imagePath" class="w-100" asp-append-version="true" />
+                    <a class="btn btn-primary mt-1" asp-area="" asp-page="Checkout/Checkout"
+                    asp-route-ImageTitle="@pizza.ImageTitle" asp-route-PizzaPrice="@pizza.FinalPrice">Get this pizza</a>
+                    <br />
+                </div>
+            }
+        </div>
+    </div>
+
+</div>
